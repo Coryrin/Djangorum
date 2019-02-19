@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+    <div class="container pb-5 pt-5" style="height:90vh;">
+
+        <h1 class="mb-3">Sign Up</h1>
+
+        <form enctype="multipart/form-data" method='POST'>
+            {% csrf_token %}
+            {{ user_form.as_p }}
+            {{ profile_form.as_p }}
+
+            <input type="submit" value="Sign Up" class="btn btn-primary">
+        </form>
+
+    </div>
+{% endblock content %}

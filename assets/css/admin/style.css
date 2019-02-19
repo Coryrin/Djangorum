@@ -1,0 +1,11 @@
+#header {
+    background: #333;
+}
+
+#branding #site-name a {
+    color: #f2f2f2 !important;
+}
+
+.module caption {
+    background: #333;
+}

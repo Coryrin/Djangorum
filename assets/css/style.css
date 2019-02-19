@@ -1,0 +1,362 @@
+:root {
+    --bg-color: #fafafa;
+    --main-color: #222;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+#body {
+    background: var(--bg-color) !important;
+    color: var(--main-color) !important;
+    font-family: 'Roboto';
+    overflow-x: hidden;
+    line-height: 1.7em;
+}
+
+.btn {
+    display: block;
+}
+
+.sign-up-form {
+    display: none;
+}
+
+.quote-btn {
+    padding: 0.4rem 0.6rem;
+    border: none;
+    background: rgba(0, 0, 0, 0.8);
+    color: #eee;
+    border-radius: 10px;
+    border: 1px solid #eee;
+    position: absolute;
+    display: none;
+}
+
+.quote-btn:hover {
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.25);
+    cursor: pointer;
+}
+
+.hero {
+    height: 70vh;
+    width: 100vw;
+    position: relative;
+    background: #251452;
+}
+
+.hero-bg {
+    background-image: url('//unsplash.it/2000/2000');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    opacity: 0.1;
+    height: 100%;
+    width: 100%;
+}
+
+.hero-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #fff;
+}
+
+.hero-content .aside {
+    margin: auto 0;
+}
+
+.hero-content h1, .hero-content p {
+    text-shadow: 10px 0 10px black;
+}
+
+.hero-content p {
+    opacity: 0.9;
+}
+
+/* SIGN UP/LOG IN FORM STYLING */
+
+.hero-form {
+    position: relative;
+    background: rgba(23, 12, 51, 0.8);
+    border-radius: 12px;
+    padding: 30px;
+}
+
+.hero-form .log-in-label,
+.hero-form .sign-up-label {
+    cursor: pointer;
+}
+
+.hero-form .log-in-label:hover,
+.hero-form .sign-up-label:hover {
+    background: rgba(51, 51, 51, 0.9);
+}
+
+.hero-form .sign-up-label {
+    left: 13%;
+}
+
+.hero .username,
+.hero .email,
+.hero .password {
+    display: block;
+    width: 100%;
+    padding: 0.2rem 0.4rem;
+    border-radius: 6px;
+    border: none;
+    font-family: 'Montserrat';
+}
+
+#body .navbar {
+    background: #251452 !important;
+}
+
+#body .navbar a {
+    color: #eee;
+}
+
+#body .navbar a:hover {
+    color: #ccc;
+}
+
+.board {
+    text-align: center;
+}
+
+.board:nth-child(even) {
+    background: #eee;
+}
+
+.board > * {
+    padding: 15px 20px 0;
+}
+
+.board-name a {
+    color: #251452;
+}
+
+.board-name a:hover {
+    text-decoration: none;
+    color: #311383;
+}
+
+/* THREAD POSTS */
+.post {
+    margin: 20px 0;
+    min-height: 300px;
+    display: grid;
+    grid-template-columns: 1fr;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.25);
+}
+
+.thread-header {
+    background: #eee;
+    padding: 5px 15px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+}
+
+.thread-header > * {
+    align-self: center;
+}
+
+.thread-header h1 {
+    padding: 5px;
+    font-size: 1.8rem;
+    font-weight: 80;
+}
+
+.post-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.post-content p {
+    white-space: pre-wrap;
+    flex-grow: 1;
+    padding: 15px;
+}
+
+.thread-footer {
+    padding: 10px 15px;
+    font-size: 1rem;
+    text-align: right;
+}
+
+.thread-footer small {
+    opacity: 0.9;
+}
+
+.user-profile img {
+    min-height: 130px;
+}
+
+.user-profile {
+    text-align: center;
+}
+
+.user-profile small {
+    padding: 0 10px;
+    font-size: 0.8rem;
+}
+
+.username {
+    margin-top: 20px;
+}
+
+.profile-pic {
+    max-height: 50%;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.post-list {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+/* THREADS */
+.thread-list-item {
+    width: 100%;
+    box-shadow: 0 0 5px 0 rgba(0,0,0,0.15);
+    padding: 0 15px;
+    display: grid;
+    grid-template-columns: 1fr;
+}
+
+.thread-list-item:nth-child(even) {
+    background: #eee;
+}
+
+.thread-list-item > div {
+    display: flex;
+    padding: 10px;
+}
+
+.thread-info {
+    height: 100%;
+    font-size: 0.8rem;
+    align-items: center;
+}
+
+.thread-info p {
+    margin: 0 10px;
+}
+
+.thread-title {
+    align-items: center;
+}
+
+.thread-title a {
+    color: #251452;
+}
+
+.thread-title a:hover {
+    text-decoration: none;
+    color: #311383;
+}
+
+.thread-info > * {
+    margin: 0 5px;
+}
+
+.thread-list-item a {
+    text-decoration: none;
+    font-size: 1.6rem;
+}
+
+.comment-field {
+    height: 100px;
+    width: 100%;
+    border-radius: 10px;
+    padding: 10px;
+    font-family: 'Roboto';
+    border: 1px solid black;
+    background: var(--bg-color);
+    color: var(--main-color);
+}
+
+/* USER PROFILES */
+
+.user-profile-info, .user-profile-details {
+    background: #eee;
+    border-radius: 12px;
+    padding: 20px;
+}
+
+.user-profile-details {
+    text-align: center;
+}
+
+.user-profile-details img {
+    width: 100%;
+    height: 300px;
+    margin-bottom: 20px;
+}
+
+footer {
+    padding: 20px;
+    width: 100%;
+    background: #251452;
+    color: #eee;
+}
+
+footer a {
+    color: #ddd;
+    font-weight: bold;
+}
+
+@media (min-width:780px) {
+
+    .hero-content h1 {
+        font-size: 3rem;
+    }
+
+    .thread-list-item {
+        grid-template-columns: 1fr auto;
+    }
+
+    .post {
+        margin: 20px 0;
+        min-height: 300px;
+        display: grid;
+        grid-template-columns: 200px 1fr;
+        box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.25);
+    }
+    
+    .thread-header {
+        background: #eee;
+        padding: 5px 15px;
+        display: grid;
+        grid-template-columns: 1fr auto;
+    }
+
+    .profile-wrapper {
+        display: grid;
+        grid-template-columns: 1fr 350px;
+        grid-gap: 20px;
+    }
+
+    .board {
+        display: grid;
+        grid-template-columns: 350px 2fr 200px;
+        width: 100%;
+        border: 1px solid grey;
+        text-align: center;
+    }
+
+    .sign-up-form {
+        display: block;
+    }
+
+    .login-form {
+        min-height: 300px;
+    }
+}

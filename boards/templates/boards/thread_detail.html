@@ -1,0 +1,139 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+<div class="container" style="min-height: 90vh;">
+
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/">Home</a></li>
+            <li class="breadcrumb-item"><a href="{% url 'boards:forum_detail' slug=forum.slug %}">{{ forum.title }}</a></li>
+            <li class="breadcrumb-item active" aria-current="page">{{ thread.title }}</li>
+        </ol>
+    </nav>
+
+    <button class="quote-btn">Quote</button>
+
+    {% if comments.number == 1 %}
+    <div class="post">
+
+        <div class="user-profile">
+            <img class="profile-pic" src="{{ user_prof.profile_pic.url }}">
+
+            <strong class="username"><a href="{% url 'accounts:profile' username=thread.author %}">{{ thread.author }}</a></strong><br>
+            <small>Member since: {{ user_prof.sign_up_date }}</small>
+
+            {% if user_prof.moderator %}
+                <small><strong>Moderator</strong></small>
+            {% endif %}
+
+        </div>
+
+        <div class="post-content">
+
+            <div class="thread-header">
+                <h1>{{ thread.title }}</h1>
+
+                {% if user.userprofile.moderator or user.is_staff %}
+                    <form action="{{ thread.slug }}/delete" method="POST">
+                        {% csrf_token %}
+                        <button class="btn btn-danger">Delete</button>
+                    </form>
+                {% endif %}
+                
+            </div>
+            
+            <p>{{ thread.body|safe }}</p>
+
+            <div class="thread-footer">
+                <hr>
+                <small>Posted {{ thread.created_at|timesince }} ago</small>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    {% for comment in comments %}
+    <div class="post">
+
+        <div class="user-profile">
+
+            <img class="profile-pic" src="{{ comment.author.userprofile.profile_pic.url }}">
+
+            <strong><a href="{% url 'accounts:profile' username=comment.author %}">{{ comment.author }}</a></strong><br>
+            <small>Member since: {{ comment.author.userprofile.sign_up_date }}</small>
+            {% if comment.author.userprofile.moderator %}
+                <small><strong>Moderator</strong></small>
+            {% endif %}
+            
+        </div>
+
+        <div class="post-content">
+            <div class="thread-header">
+                <h1>{{ thread.title }}</h1>
+                {% if user.is_staff or user.userprofile.moderator %}
+                    
+                    <form action="{{ thread.slug }}/{{ comment.id }}/delete" method="POST">
+                        {% csrf_token %}
+
+                        <button class="btn btn-danger">Delete</button>
+                    </form>
+
+                {% endif %}
+            </div>
+
+            <p>{{ comment.body|safe }}</p>
+            
+            <div class="thread-footer">
+                <hr>
+                <small>Posted {{ comment.created_at|timesince }} ago</small>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+
+    <div class="pagination d-flex justify-content-center mt-5">
+
+        <ul class="pagination">
+            {% if comments.has_previous %}
+                <li class="page-item">
+                    <a class="page-link" href="?page=1">First</a>
+                </li>
+
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ comments.previous_page_number }}">{{ comments.previous_page_number }}</a>
+                </li>
+            {% endif %}
+
+            <li class="page-item active">
+                <a class="page-link">{{ comments.number }}</a>
+            </li>
+
+            {% if comments.has_next %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ comments.next_page_number }}">{{ comments.next_page_number }}</a>
+                </li>
+
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ comments.paginator.num_pages }}">Last</a>
+                </li>
+            {% endif %}
+
+        </ul>
+    </div>
+
+    {% comment %} Show the comment box if the user is logged in {% endcomment %}
+    {% if user.is_authenticated %}
+        <div class="comment-form">
+            <form action="{% url 'boards:thread_detail' forum_slug=forum.slug thread_slug=thread.slug %}" method="POST">
+                {% csrf_token %}
+                {{ comment_form.as_p|safe }}
+                <input type="submit" value="Add Comment" class="btn btn-primary">
+            </form>
+        </div>
+    {% else %}
+    <h3>You must log in to make a comment.</h3>
+    {% endif %}
+</div>
+
+{% endblock content %}

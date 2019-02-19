@@ -1,0 +1,114 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="hero mb-5">
+    <div class="hero-bg"></div>
+
+        <div class="container hero-content">
+            <div class="row">
+                <div class="col-md-8 aside">
+                    <h1>Welcome to Djangorum</h1>
+
+                    <p>The forum built by a cool guy, for cool guys</p>
+                </div>
+
+                {% if not user.is_authenticated %}
+                <div class="col-md-4 text-center hero-form">
+
+                    {% comment %} User log in form {% endcomment %}
+                    <div class="login-form">
+                        <h2 class="title mb-5">Log In</h2>
+
+                        <form action="{% url 'accounts:login' %}" method="POST">
+                            {% csrf_token %}
+
+                            <input class="username mb-3" type="text" name="username" placeholder="Username">
+
+                            <input class="password" type="password" name="password" placeholder="Password">
+                            
+                            <div class="form-group mt-3" style="text-align: right;">
+                                <input type="submit" class="btn btn-light btn-block" value="Log In">
+                            </div>
+
+                        </form>
+
+                        <label class="sign-up-label" for="signUpForm">Don't have an account yet? Sign Up</label>
+                        
+                    </div>
+                    {% comment %} User sign up form {% endcomment %}
+                    
+                    <div class="sign-up-form" style="display: none;">
+                        <h2 class="title mb-3">Sign Up</h2>
+
+                        <form action="{% url 'accounts:signup' %}" method="POST" enctype="multipart/form-data">
+                            {% csrf_token %}
+
+                            {{ user_signup_form.as_p }}
+
+                            {{ user_profile_form.as_p }}
+                            
+                            <div class="form-group mt-3" style="text-align: right;">
+                                <input type="submit" class="btn btn-light btn-block" value="Sign Up">
+                            </div>
+
+
+                        </form>
+
+                        <label class="log-in-label" for="logInForm">Already have an account? Log In</label>
+                    </div>
+
+                </div>
+
+                {% endif %}
+
+            </div>
+
+
+        </div>
+        
+    </div>
+
+</div>
+
+<div class="container">
+
+    {% if messages %}
+
+    {% for message in messages %}
+        <div class="alert alert-success text-center">
+            {{ message }}
+        </div>
+    {% endfor %}
+    
+    {% endif %}
+
+    <h2 class="text-center pt-3 pb-3">Forums</h2> 
+
+    <div class="boards pb-5 mb-5">
+    {% comment %} Loop over all the forum boards {% endcomment %}
+        {% for board in list %}
+            <div class="board">
+
+                {% comment %} Output the forum name in a href with links to the forum {% endcomment %}
+                <div class="board-name">
+                    <h3>
+                        <a href="{% url 'boards:forum_detail' slug=board.slug %}">{{ board.title }}</a>
+                    </h3>
+                </div>
+                
+                {% comment %} Output the forum description {% endcomment %}
+                <div class="board-description">
+                    <p>{{ board.description }}</p>
+                </div>
+
+                <div class="board-info">
+                    <p><strong>{{ board.posts.count }}</strong> thread(s)</p>
+                </div>
+            </div>
+                    
+            
+        {% endfor %}
+    </div>
+</div>
+{% endblock content %}
