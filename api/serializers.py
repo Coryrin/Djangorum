@@ -7,12 +7,18 @@ class UserSerializer(serializers.ModelSerializer):
         model = User
         fields = ['username']
 
+class CommentsSerializer(serializers.ModelSerializer):
+    author = UserSerializer()
+    class Meta:
+        model = models.PostComment
+        fields = ['id', 'body', 'author']
 class ThreadSerializer(serializers.ModelSerializer):
     author = UserSerializer()
+    comments = CommentsSerializer(many=True)
 
     class Meta:
         model = models.Post
-        fields = ['title', 'body', 'author']
+        fields = ['id', 'title', 'body', 'author', 'comments']
 
 class ForumBoardSerializer(serializers.ModelSerializer):
     posts = ThreadSerializer(many=True, read_only=True)
