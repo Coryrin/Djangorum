@@ -23,6 +23,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('logout/', views.logout, name='logout'),
     path('accounts/', include('accounts.urls')),
+    path('api-auth/', include('rest_framework.urls')),
+    path('api/', include('api.urls')),
     path('', include('boards.urls')),
 ]
 
