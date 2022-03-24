@@ -28,7 +28,7 @@ SECRET_KEY = '98#zjvoa+k+pio-%dj2#yv263&oi3ej&_!!t4n#z+n2%#937(!'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['djangorum.herokuapp.com']
 
 
 # Application definition
