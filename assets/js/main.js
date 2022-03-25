@@ -3,10 +3,9 @@ window.addEventListener('mouseup', e => {
     // If nothing is selected, it returns true. Otherwise, if something is selected, it's false.
     // Weird.
     if (!getSelection().isCollapsed) {
-        text = getSelection().toString();
-        
-        let quoteBtn = document.querySelector('.quote-btn');
-        let commentBox = document.querySelector('.comment-field');
+        const text = getSelection().toString();
+        const quoteBtn = document.querySelector('.quote-btn');
+        const commentBox = document.querySelector('.comment-field');
 
         quoteBtn.style.display = 'block';
         quoteBtn.style.top = e.layerY + 'px';
@@ -20,17 +19,19 @@ window.addEventListener('mouseup', e => {
     };
 });
 
-let loginToggle = document.querySelector('.log-in-label');
-let signUpToggle = document.querySelector('.sign-up-label');
+const loginToggle = document.querySelector('.log-in-label');
+const signUpToggle = document.querySelector('.sign-up-label');
 
-loginToggle.addEventListener('click', showLoginForm);
+if (loginToggle) {
+    loginToggle.addEventListener('click', showLoginForm);
+}
 
-signUpToggle.addEventListener('click', showSignUpForm);
+if (signUpToggle) {
+    signUpToggle.addEventListener('click', showSignUpForm);
+}
 
-let signUpForm = document.querySelector('.sign-up-form');
-
-let loginForm = document.querySelector('.login-form');
-
+const signUpForm = document.querySelector('.sign-up-form');
+const loginForm = document.querySelector('.login-form');
 
 function showLoginForm() {
     signUpForm.style.display = 'none';
@@ -42,3 +43,5 @@ function showSignUpForm() {
     signUpForm.style.display = 'block';
 }
 
+const year = new Date().getFullYear();
+document.querySelector('#currentYear').innerText = year;

@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;700&family=Roboto:ital,wght@0,100;0,400;0,700;1,100&display=swap');
+
 :root {
     --bg-color: #fafafa;
     --main-color: #222;
@@ -17,6 +19,10 @@
     line-height: 1.7em;
 }
 
+#body .outer {
+    min-height: 90vh;
+}
+
 .btn {
     display: block;
 }
@@ -27,7 +33,6 @@
 
 .quote-btn {
     padding: 0.4rem 0.6rem;
-    border: none;
     background: rgba(0, 0, 0, 0.8);
     color: #eee;
     border-radius: 10px;
